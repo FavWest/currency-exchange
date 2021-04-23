@@ -5,5 +5,10 @@ import './css/styles.css';
 //import Example from './example.js';
 
 $(document).ready(function() {
-  $("#jquery-check").text("If you can see this, Main.js and JQuery are connected");
+  $("#convert").click(function(event){
+    event.preventDefault();
+    $("#display-dollars").text($("#dollars").val());
+    $("#display-currency").text($("#currency").val());
+    $("#display-result").show();
+  });
 });
