@@ -2,7 +2,7 @@ export default class Exchange {
   static getExchange(currency) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/pair/USD/KRW/10?=`;
+      const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/pair/USD/${currency}/10?=`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
