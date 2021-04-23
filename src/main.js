@@ -7,6 +7,9 @@ import Exchange from './js/exchange.js';
 
 $(document).ready(function() {
   $("#convert").click(function(event){
+    $("#display-result").hide();
+    $("#display-error").hide();
+    $("#display-loading").show();
     event.preventDefault();
     let currency=$("#currency-select").val();
     let amount=$("#dollars").val();
@@ -17,12 +20,17 @@ $(document).ready(function() {
       console.log(body.conversion_result);
       let conversion=body.conversion_result;
       $("#display-conversion").text(conversion);
+      $("#display-dollars").text($("#dollars").val());
+      $("#display-currency").text($("#currency-select").val());  
+      $("#display-result").show();
+      $("#display-loading").hide();
+      $("#display-error").hide();
     }, function(error){
-      console.error("This is Tori's Error message"+error);
-      $("#error-message").text(error.type);
+      console.error(error);
+      $("#error-message").text(error);
+      $("#display-error").show();
+      $("#display-result").hide();
+      $("#display-loading").hide();
     });
-    $("#display-dollars").text($("#dollars").val());
-    $("#display-currency").text($("#currency-select").val());  
-    $("#display-result").show();
   });
 });

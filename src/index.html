@@ -15,13 +15,18 @@
       <option value="MXN">Mexican Peso</option>
       <option value="CAD">Canadian Dollar</option>
       <option value="EUR">Euro</option>
-      <option value="JPY">Japanese Yen</option>
+      <option value="123">Japanese Yen</option> 
     </select>
     <button type="submit" id="convert">Convert</button>
   </form>
   <div id="display-result">
     <p>$<span id="display-dollars"></span> in USD is equal to <span id="display-conversion">CALCULATING...</span> in <span id="display-currency"></span>.</p>
-    <p id="error-message"></p>
+  </div>
+  <div id="display-loading">
+    <p>CALCULATING...</p>
+  </div>
+  <div id="display-error">
+    <p id="error-message">ERROR!!!!</p>
   </div>
 </body>
 </html>

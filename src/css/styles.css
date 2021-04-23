@@ -1,3 +1,11 @@
 #display-result{
   display: none;
 }
+
+#display-loading{
+  display:none;
+}
+
+#display-error{
+  display:none;
+}
