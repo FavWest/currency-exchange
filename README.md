@@ -1,31 +1,30 @@
-# Shape-Tracker
+# update
 
-#### Code-along project to learn how to implement webpack. May be useful as a template. Also allows user to input dimensions of a triangle and receive the message "I can't do that yet."
+#### update
 
 #### By _**Victoria West**_
 
-## Technologies Used
+## Technologies Used (update?)
 * HTML
 * CSS
 * Bootstrap
 * JQuery
 * JavaScript
 * webpack
-* npm
+* Node
 
 ## Description
-_Set up webpack to allow creating a live development server. Eslint, HTMLWebpackPlugin. Project is set up for JQuery and Bootstrap._
+_update_
 
 ## Setup/Installation Requirements
 ### Run locally
 _You'll need Git and Node.js_
 * Clone from GitHub
-* From project's root directory in the command line: `npm install`
+* From project's root directory in the command line/terminal: `npm install`
+* To build without launching, type `npm run build`
 * `npm run start` to build and run project on live development server
-### If using as a template
-* Specify project name and author in package.json
-* Delete src/triangle.js
-* In src/main.js, delete import from triangle.js
+* To run tests: from project's root directory in the command line/terminal, `npm run test`
+### Update: API set-up?  Include all steps for getting a key - from the link to sign up for an account to any steps to getting an API key to using a personal key with a .env file
 
 ## Known Bugs
 * 
@@ -34,3 +33,4 @@ MIT
 Copyright (c) 2021 Victoria West
 ## Contact Information
 Victoria West email@email.com
+
