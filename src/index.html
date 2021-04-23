@@ -4,7 +4,17 @@
   <title>Currency Exchange</title>
 </head>
 <body>
-  <h1 class="jumbotron">Congratulations, your index page works! And if this is a blue jumbotron, so do your bootstrap and CSS!</h1>
-  <p id="jquery-check"></p>
+  <h1>Currency Exchange</h1>
+  <h2>Convert USD to other national currencies</h2>
+  <form id="user_query">
+    <label for="dollars">Enter an amount in US Dollars:</label>
+    <input id="dollars" type="number" step='0.01'>
+    <label for="currency">Enter a currency for exchange:</label>
+    <input id="currency" type="text">
+    <button type="submit">Convert</button>
+  </form>
+  <div id="display-result">
+    <p>$<span id="display-dollars">50</span> in USD is equal to <span id="display-result">amount</span> in <span id="display-currency">South Korean won</span>.</p>
+  </div>
 </body>
 </html>
