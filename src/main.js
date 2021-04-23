@@ -5,15 +5,14 @@ import './css/styles.css';
 import Exchange from './js/exchange.js';
 //import calculateConversion from './js/calculateConversion.js';
 
-let body;
 $(document).ready(function() {
   let conversion;
   $("#convert").click(function(event){
     event.preventDefault();
-    let currency="KRW";
+    let currency=$("#currency-select").val();
     let promise = Exchange.getExchange(currency);
     promise.then(function(response){
-      body = JSON.parse(response);
+      let body = JSON.parse(response);
       console.log(body);
       console.log(body.conversion_result);
       conversion=body.conversion_result;

@@ -32,8 +32,9 @@ _Application will not work without an API key. API keys for this site are free a
 * Open the project directory
 * In the project's root directory, create a .env file
 * In your .env file, add your API key and name it API_KEY:  
-  `API_KEY=yourAPIkey;`   
+  `API_KEY=yourAPIkey`   
   Note: replace `yourAPIkey` with your own API key. Do not add brackets, quotes, etc.
+* You may need a browser extension to use your API key. If on Chrome, you can use Moesif Origin & CORS Changer extension: https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc?hl=en-US. You will need to download it, then enable it by clicking its icon in the upper right corner of the browser.
 
 ### Install Dependencies and Run Program
 * From project's root directory in the command line/terminal: `npm install`
