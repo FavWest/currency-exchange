@@ -2,7 +2,7 @@ export default class Exchange {
   static getExchange(currency) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `http://data.fixer.io/api/latest?access_key=${process.env.API_KEY}`;
+      const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/pair/USD/KRW/10?=`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);

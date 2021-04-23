@@ -3,6 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Exchange from './js/exchange.js';
+//import calculateConversion from './js/calculateConversion.js';
 
 $(document).ready(function() {
   let conversion;
@@ -12,7 +13,7 @@ $(document).ready(function() {
     let promise = Exchange.getExchange(currency);
     promise.then(function(response){
       const body = JSON.parse(response);
-      conversion=body.main.conversion_result;
+      console.log(body);
     }, function(error){
       console.error("This is Tori's Error message"+error);
     });
