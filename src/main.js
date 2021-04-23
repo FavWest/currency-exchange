@@ -5,11 +5,12 @@ import './css/styles.css';
 import Exchange from './js/exchange.js';
 
 $(document).ready(function() {
+  let conversion;
   $("#convert").click(function(event){
     event.preventDefault();
-    let conversion;
-    Exchange.getExchange()
-    .then(function(response){
+    let currency="KRW";
+    let promise = Exchange.getExchange(currency);
+    promise.then(function(response){
       const body = JSON.parse(response);
       conversion=body.main.conversion_result;
     }, function(error){

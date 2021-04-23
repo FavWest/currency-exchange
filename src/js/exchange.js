@@ -1,16 +1,19 @@
-export default class Exchange {
-  static getExchange(){
-    return fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/pair/USD/KRW/10`)
-    .then(function(response) {
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      return response.json();
-    })
-    .catch(function(error) {
-      return Error(error);
-    })
-}
+export default class Exchange {  
+  static getExchange(currency) {
+    return new Promise(function(resolve, reject) {
+      let request = new XMLHttpRequest();
+      const url = `http://data.fixer.io/api/latest?access_key=${process.env.API_KEY}`;
+      request.onload = function() {
+        if (this.status === 200) {
+          resolve(request.response);
+        } else {
+          reject(request.response);
+        }
+      };
+      request.open("GET", url, true);
+      request.send();
+    });
+  }
 }
 
 
