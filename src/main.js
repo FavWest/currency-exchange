@@ -3,7 +3,6 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Exchange from './js/exchange.js';
-//import calculateConversion from './js/calculateConversion.js';
 
 $(document).ready(function() {
   $("#convert").click(function(event){
@@ -27,7 +26,7 @@ $(document).ready(function() {
       $("#display-error").hide();
     }, function(error){
       console.error(error);
-      $("#error-message").text(error);
+      $("#error-message").text(error["error-type"]);
       $("#display-error").show();
       $("#display-result").hide();
       $("#display-loading").hide();

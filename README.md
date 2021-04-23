@@ -4,10 +4,8 @@
 
 #### By _**Victoria West**_
 
-## Technologies Used (update?)
+## Technologies Used
 * HTML
-* CSS
-* Bootstrap
 * JQuery
 * JavaScript
 * webpack
@@ -44,7 +42,8 @@ _Application will not work without an API key. API keys for this site are free a
 
 
 ## Known Bugs
-* 
+* Does not display useful error messages to user
+
 ## License
 MIT
 Copyright (c) 2021 Victoria West
