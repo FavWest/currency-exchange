@@ -8,7 +8,7 @@ $(document).ready(function() {
   $("#convert").click(function(event){
     event.preventDefault();
     $("#display-dollars").text($("#dollars").val());
-    $("#display-currency").text($("#currency").val());
+    $("#display-currency").text($("#currency-select").val());
     $("#display-result").show();
   });
 });
