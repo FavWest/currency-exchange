@@ -14,7 +14,7 @@ $(document).ready(function() {
     let amount=$("#dollars").val();
     Exchange.getExchange(currency, amount)
       .then(function(response){
-        if(response.result){//TODO
+        if(response.result==="success"){//TODO
           let conversion=response.conversion_result;
           $("#display-conversion").text(conversion);
           $("#display-dollars").text($("#dollars").val());
@@ -22,6 +22,11 @@ $(document).ready(function() {
           $("#display-result").show();
           $("#display-loading").hide();
           $("#display-error").hide();
+        } else if(response.result==="error") {
+          $("#error-message").append(response["error-type"]); //TODO
+          $("#display-error").show();
+          $("#display-result").hide();
+          $("#display-loading").hide();
         } else {
           $("#error-message").append(response.message); //TODO
           $("#display-error").show();
