@@ -12,24 +12,22 @@ $(document).ready(function() {
     event.preventDefault();
     let currency=$("#currency-select").val();
     let amount=$("#dollars").val();
-    let promise = Exchange.getExchange(currency, amount);
-    promise.then(function(response){
-      let body = JSON.parse(response);
-      console.log(body);
-      console.log(body.conversion_result);
-      let conversion=body.conversion_result;
-      $("#display-conversion").text(conversion);
-      $("#display-dollars").text($("#dollars").val());
-      $("#display-currency").text($("#currency-select").val());  
-      $("#display-result").show();
-      $("#display-loading").hide();
-      $("#display-error").hide();
-    }, function(error){
-      console.error(error);
-      $("#error-message").text(error["error-type"]);
-      $("#display-error").show();
-      $("#display-result").hide();
-      $("#display-loading").hide();
-    });
+    Exchange.getExchange(currency, amount)
+      .then(function(response){
+        if(response.result){//TODO
+          let conversion=response.conversion_result;
+          $("#display-conversion").text(conversion);
+          $("#display-dollars").text($("#dollars").val());
+          $("#display-currency").text($("#currency-select").val());  
+          $("#display-result").show();
+          $("#display-loading").hide();
+          $("#display-error").hide();
+        } else {
+          $("#error-message").append(response.message); //TODO
+          $("#display-error").show();
+          $("#display-result").hide();
+          $("#display-loading").hide();
+        }
+      });
   });
 });
