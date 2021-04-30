@@ -23,12 +23,18 @@ $(document).ready(function() {
           $("#display-loading").hide();
           $("#display-error").hide();
         } else if(response.result==="error") {
-          $("#error-message").append(response["error-type"]); //TODO
+          if(response["error-type"]==="invalid-key") {
+            $("#error-message").append(`${response["error-type"]}: make sure you have a valid API key. See project README for instructions for adding an API key.`);
+          } else if(response["error-type"]==="unsupported-code"){
+            $("#error-message").append(`${response["error-type"]}: currency not found; check your currency code.`);
+          } else {
+            $("#error-message").append(response["error-type"]);
+          }
           $("#display-error").show();
           $("#display-result").hide();
           $("#display-loading").hide();
         } else {
-          $("#error-message").append(response.message); //TODO
+          $("#error-message").append(response.message); //wrong address = failed to fetch
           $("#display-error").show();
           $("#display-result").hide();
           $("#display-loading").hide();
