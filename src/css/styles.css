@@ -1,15 +1,3 @@
-#display-result{
-  display: none;
-}
-
-#display-loading{
-  display:none;
-}
-
-#display-error{
-  display:none;
-}
-
-#display-need-amount{
-  display:none;
+.red {
+  color:red;
 }

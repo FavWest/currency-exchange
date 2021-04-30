@@ -4,67 +4,30 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Exchange from './js/exchange.js';
 
-function showNeedAmount(){
-  $("#display-need-amount").show();
-  $("#display-result").hide();
-  $("#display-error").hide();
-  $("#display-loading").hide();
-}
-
-function showLoading(){
-  $("#display-need-amount").hide();  
-  $("#display-result").hide();
-  $("#display-error").hide();
-  $("#display-loading").show();
-}
-
-function showConversionResult(response){
-  let conversion=response.conversion_result;
-  $("#display-conversion").text(conversion);
-  $("#display-dollars").text($("#dollars").val());
-  $("#display-currency").text($("#currency-select").val());  
-  $("#display-result").show();
-  $("#display-loading").hide();
-  $("#display-error").hide();
-}
-
-function showAPIError(response){
-  if(response["error-type"]==="invalid-key") {
-    $("#error-message").text(`There was an error: ${response["error-type"]}: make sure you have a valid API key. See project README for instructions for adding an API key.`);
-  } else if(response["error-type"]==="unsupported-code"){
-    $("#error-message").text(`There was an error: ${response["error-type"]}: currency not found; check your currency code.`);
-  } else {
-    $("#error-message").text(`There was an error: ${response["error-type"]}`);
-  }
-  $("#display-error").show();
-  $("#display-result").hide();
-  $("#display-loading").hide();
-}
-
-function showFetchError(response) {
-  $("#error-message").text(`There was an error: ${response.message}`);
-  $("#display-error").show();
-  $("#display-result").hide();
-  $("#display-loading").hide();
-}
-
 $(document).ready(function() {
   $("#convert").click(function(event){
     event.preventDefault();
     let amount=$("#dollars").val();
     if (amount==="") {
-      showNeedAmount();
+      $("#message").html(`<p class="red">Please enter a dollar amount to get an exchange value</p>`);
     } else {
       let currency=$("#currency-select").val();
-      showLoading();
+      $("#message").html(`<p>FETCHING EXCHANGE RATE...</p>`);
       Exchange.getExchange(currency, amount)
         .then(function(response){
           if(response.result==="success"){
-            showConversionResult(response);
+            let conversion=response.conversion_result;
+            $("#message").html(`$${$("#dollars").val()} in USD is equal to ${conversion} in ${$("#currency-select").val()}.`);
           } else if(response.result==="error") {
-            showAPIError(response);
+            if(response["error-type"]==="invalid-key") {
+              $("#message").html(`<p class="red">There was an error: ${response["error-type"]}: make sure you have a valid API key. See project README for instructions for adding an API key.</p>`);
+            } else if(response["error-type"]==="unsupported-code"){
+              $("#message").html(`<p class="red">There was an error: ${response["error-type"]}: currency not found; check your currency code.</p>`);
+            } else {
+              $("#message").html(`<p class="red">There was an error: ${response["error-type"]}</p>`);
+            }
           } else {
-            showFetchError(response);
+            $("#message").html(`<p class="red">There was an error: ${response.message}</p>`);
           }
         });
     }
