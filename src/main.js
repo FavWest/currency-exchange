@@ -19,15 +19,19 @@ $(document).ready(function() {
             let conversion=response.conversion_result;
             $("#message").html(`$${$("#dollars").val()} in USD is equal to ${conversion} in ${$("#currency-select").val()}.`);
           } else if(response.result==="error") {
+            $("#message").html(`<p class="red">There was an error: ${response["error-type"]}.</p>`);
             if(response["error-type"]==="invalid-key") {
-              $("#message").html(`<p class="red">There was an error: ${response["error-type"]}: make sure you have a valid API key. See project README for instructions for adding an API key.</p>`);
+              $("#message").append(`<p class="red">You may not have a valid API key. See <a href="https://github.com/FavWest/currency-exchange#readme">project README</a> for instructions for adding an API key.</p>`);
             } else if(response["error-type"]==="unsupported-code"){
-              $("#message").html(`<p class="red">There was an error: ${response["error-type"]}: currency not found; check your currency code.</p>`);
+              $("#message").append(`<p class="red">Currency does not exist. <a href="https://www.exchangerate-api.com/docs/supported-currencies">Click here</a> for a list of supported currencies.</p>`);
             } else {
               $("#message").html(`<p class="red">There was an error: ${response["error-type"]}</p>`);
             }
           } else {
             $("#message").html(`<p class="red">There was an error: ${response.message}</p>`);
+            if(response.message==="Failed to fetch"){
+              $("#message").append(`<p class="red">There may be a problem with the request URL</p>`);
+            }
           }
         });
     }
