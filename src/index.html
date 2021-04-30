@@ -11,7 +11,7 @@
     <input id="dollars" type="number" step='0.01'>
     <label for="currency-select">Enter a currency for exchange:</label>
     <select id="currency-select">
-      <option value="XYZ">South Korean Won (KRW)</option>
+      <option value="KRW">South Korean Won (KRW)</option>
       <option value="MXN">Mexican Peso (MXN)</option>
       <option value="CAD">Canadian Dollar (CAD)</option>
       <option value="EUR">Euro (EUR)</option>
@@ -19,6 +19,9 @@
     </select>
     <button type="submit" id="convert">Convert</button>
   </form>
+  <div id="display-need-amount">
+    <p>Please enter a dollar amount to get an exchange value</p>
+  </div>
   <div id="display-result">
     <p>$<span id="display-dollars"></span> in USD is equal to <span id="display-conversion">CALCULATING...</span> in <span id="display-currency"></span>.</p>
   </div>

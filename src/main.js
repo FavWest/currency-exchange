@@ -6,39 +6,44 @@ import Exchange from './js/exchange.js';
 
 $(document).ready(function() {
   $("#convert").click(function(event){
-    $("#display-result").hide();
-    $("#display-error").hide();
-    $("#display-loading").show();
     event.preventDefault();
-    let currency=$("#currency-select").val();
     let amount=$("#dollars").val();
-    Exchange.getExchange(currency, amount)
-      .then(function(response){
-        if(response.result==="success"){//TODO
-          let conversion=response.conversion_result;
-          $("#display-conversion").text(conversion);
-          $("#display-dollars").text($("#dollars").val());
-          $("#display-currency").text($("#currency-select").val());  
-          $("#display-result").show();
-          $("#display-loading").hide();
-          $("#display-error").hide();
-        } else if(response.result==="error") {
-          if(response["error-type"]==="invalid-key") {
-            $("#error-message").append(`${response["error-type"]}: make sure you have a valid API key. See project README for instructions for adding an API key.`);
-          } else if(response["error-type"]==="unsupported-code"){
-            $("#error-message").append(`${response["error-type"]}: currency not found; check your currency code.`);
+    if (amount==="") {
+      $("#display-need-amount").show();
+    } else {
+      $("#display-need-amount").hide();
+      let currency=$("#currency-select").val();
+      $("#display-result").hide();
+      $("#display-error").hide();
+      $("#display-loading").show();
+      Exchange.getExchange(currency, amount)
+        .then(function(response){
+          if(response.result==="success"){
+            let conversion=response.conversion_result;
+            $("#display-conversion").text(conversion);
+            $("#display-dollars").text($("#dollars").val());
+            $("#display-currency").text($("#currency-select").val());  
+            $("#display-result").show();
+            $("#display-loading").hide();
+            $("#display-error").hide();
+          } else if(response.result==="error") {
+            if(response["error-type"]==="invalid-key") {
+              $("#error-message").append(`${response["error-type"]}: make sure you have a valid API key. See project README for instructions for adding an API key.`);
+            } else if(response["error-type"]==="unsupported-code"){
+              $("#error-message").append(`${response["error-type"]}: currency not found; check your currency code.`);
+            } else {
+              $("#error-message").append(response["error-type"]);
+            }
+            $("#display-error").show();
+            $("#display-result").hide();
+            $("#display-loading").hide();
           } else {
-            $("#error-message").append(response["error-type"]);
+            $("#error-message").append(response.message);
+            $("#display-error").show();
+            $("#display-result").hide();
+            $("#display-loading").hide();
           }
-          $("#display-error").show();
-          $("#display-result").hide();
-          $("#display-loading").hide();
-        } else {
-          $("#error-message").append(response.message); //wrong address = failed to fetch
-          $("#display-error").show();
-          $("#display-result").hide();
-          $("#display-loading").hide();
-        }
-      });
+        });
+    }
   });
 });
