@@ -41,7 +41,7 @@ _Application will not work without an API key. API keys for this site are free a
 
 
 ## Known Bugs
-* Does not display useful error messages to user
+* Does not display useful error messages to user FIXED 4-29-2021
 
 ## License
 MIT
