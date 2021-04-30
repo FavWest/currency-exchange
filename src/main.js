@@ -30,11 +30,11 @@ function showConversionResult(response){
 
 function showAPIError(response){
   if(response["error-type"]==="invalid-key") {
-    $("#error-message").append(`${response["error-type"]}: make sure you have a valid API key. See project README for instructions for adding an API key.`);
+    $("#error-message").text(`There was an error: ${response["error-type"]}: make sure you have a valid API key. See project README for instructions for adding an API key.`);
   } else if(response["error-type"]==="unsupported-code"){
-    $("#error-message").append(`${response["error-type"]}: currency not found; check your currency code.`);
+    $("#error-message").text(`There was an error: ${response["error-type"]}: currency not found; check your currency code.`);
   } else {
-    $("#error-message").append(response["error-type"]);
+    $("#error-message").text(`There was an error: ${response["error-type"]}`);
   }
   $("#display-error").show();
   $("#display-result").hide();
@@ -42,7 +42,7 @@ function showAPIError(response){
 }
 
 function showFetchError(response) {
-  $("#error-message").append(response.message);
+  $("#error-message").text(`There was an error: ${response.message}`);
   $("#display-error").show();
   $("#display-result").hide();
   $("#display-loading").hide();
